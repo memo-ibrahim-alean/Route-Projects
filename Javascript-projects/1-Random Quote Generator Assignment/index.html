@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quotes App</title>
-  <!-- bootstrap css -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- fontawesome css -->
-  <link rel="stylesheet" href="css/all.min.css">
-  <!-- my css -->
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  
-
-  <!-- bootstrap js -->
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <!-- my js -->
-  <script src="js/script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quotes App</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- Impact font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fruktur&display=swap"
+      rel="stylesheet"
+    />
+    <!-- my css -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container text-center mt-5">
+      <h1>Quote of the Day</h1>
+      <p>Press the button below to recieve a random quote!</p>
+      <button onclick="generateQuote()" type="button" class="btn btn-outline-primary btn-lg">
+        New Quote
+      </button>
+      <p id="quote" class="mt-5 "></p>
+      <p id="author"></p>
+    </div>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- my js -->
+    <script src="js/script.js"></script>
+  </body>
 </html>
