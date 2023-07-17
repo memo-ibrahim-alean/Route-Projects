@@ -1,137 +1,155 @@
-// crud
-//  c=> create
-//  r=> retrive (display)
-//  u => update
-//  d=>delete
-// s => search
-let productName = document.getElementById('pName');
-let productCategory = document.getElementById('pCat');
-let productPrice = document.getElementById('pPrice');
-let productDescription = document.getElementById('desc');
+const bookmarkName = document.getElementById("bookmarkName");
+const bookmarkURL = document.getElementById("bookmarkURL");
 
-let productList = [];
+let bookmarks;
 
-function createProudct() {
-    const product = {
-        pName: productName.value,
-        pCat: productCategory.value,
-        pPrice: productPrice.value,
-        desc: productDescription.value,
-    };
-
-    productList.push(product);
-
-    display();
-    Reset();
+if (localStorage.getItem('Bookmarks') === null) {
+    bookmarks = [];
+} else {
+    bookmarks = JSON.parse(localStorage.getItem('Bookmarks'));
+    displayUrl();
 }
 
-function display() {
-    let trs = '';
-    // console.log(productList);
-    for (let i = 0; i < productList.length; i++) {
-        trs += `
-            <tr>
-                <td>${i + 1}</td>
-                <td>${productList[i].pName}</td>
-                <td>${productList[i].pCat}</td>
-                <td>${productList[i].pPrice}</td>
-                <td>${productList[i].desc}</td>
-                <td><button class="btn btn-outline-warning" onClick="updateProudct(${i})"><i class="fa-solid fa-edit"></i></button></td>
-                <td><button class="btn btn-outline-danger" onClick="delte(${i})"><i class="fa-solid fa-trash"></i></button></td>
-            </tr>
-        `;
+
+function createUrl() {
+    let bookmark = {
+        name: bookmarkName.value,
+        url: bookmarkURL.value
     }
 
-
-    document.getElementById('tableBody').innerHTML = trs;
-}
-
-
-function delte(index) {
-    productList.splice(index, 1);
-    display()
-}
-
-let productSearch = document.getElementById('prodSearch');
-function searchProudct() {
-    let trs = '';
-    for (let i = 0; i < productList.length; i++) {
-        if (productList[i].pName.includes(productSearch.value)) {
-
-            let heightlightText = heightlight(productSearch.value, i);
-            // <td>${productList[i].pName}</td>
-            trs += `
-            <tr>
-                <td>${i + 1}</td>
-                <td>${heightlightText}</td>
-                <td>${productList[i].pCat}</td>
-                <td>${productList[i].pPrice}</td>
-                <td>${productList[i].desc}</td>
-                <td><button class="btn btn-outline-warning" onClick="updateProudct(${i})"><i class="fa-solid fa-edit"></i></button></td>
-                <td><button class="btn btn-outline-danger" onClick="delte(${i})"><i class="fa-solid fa-trash"></i></button></td>
-            </tr>
-        `;
+    if (bookmarks.length >= 0 && bookmark.name !== "" && bookmark.url !== "" && checkUrlInput()) {
+        for (let i = 0; i < bookmarks.length; i++) {
+            if ((bookmarks[i].name).toLowerCase() === (bookmark.name).toLowerCase() && (bookmarks[i].url).toLowerCase() === (bookmark.url).toLowerCase()) {
+                swal({
+                    title: "Warning",
+                    text: "Bookmark already exists",
+                    type: "warning",
+                });
+                restUrl();
+                return;
+            } else if ((bookmarks[i].url).toLowerCase() === (bookmark.url).toLowerCase()) {
+                swal({
+                    title: "Warning",
+                    text: "Bookmark URL already exists",
+                    type: "warning",
+                });
+                restUrl();
+                return;
+            }
+            else if ((bookmarks[i].name).toLowerCase() === (bookmark.name).toLowerCase()) {
+                // alert("Bookmark name already exists");
+                swal({
+                    title: "Warning",
+                    text: "Bookmark name already exists",
+                    type: "warning",
+                });
+                restUrl();
+                return;
+            } else if ((bookmarks[i].url).toLowerCase() === (bookmark.url).toLowerCase()) {
+                // alert("Bookmark URL already exists");
+                swal({
+                    title: "Warning",
+                    text: "Bookmark URL already exists",
+                    type: "warning",
+                });
+                restUrl();
+                return;
+            }
         }
-    }
-    document.getElementById('tableBody').innerHTML = trs;
-}
-
-function Reset() {
-    productName.value = '';
-    productCategory.value = '';
-    productPrice.value = '';
-    productDescription.value = '';
-}
-
-// update
-function updateProudct(index) {
-    productName.value = productList[index].pName;
-    productCategory.value = productList[index].pCat;
-    productPrice.value = productList[index].pPrice;
-    productDescription.value = productList[index].desc;
-
-    document.getElementById('addBtn').style.display = 'none';
-    document.getElementById('btns').innerHTML = `
-    <button class="btn btn-primary" id="updateBtn" onclick="update(${index})">
-        Update product
-    </button>
-    <button class="btn btn-danger" onclick="Reset()">Reset</button>
-    `;
-}
-
-function update(index) {
-    productList[index].pName = productName.value;
-    productList[index].pCat = productCategory.value;
-    productList[index].pPrice = productPrice.value;
-    productList[index].desc = productDescription.value;
-    document.getElementById('updateBtn').style.display = 'none';
-    document.getElementById('btns').innerHTML = `
-    <button class="btn btn-primary" onclick="createProudct()" id="addBtn">
-        Add product
-    </button>
-    <button class="btn btn-danger" onclick="Reset()">Reset</button>
-    `;
-    display();
-    Reset();
-}
-
-// heightlight
-
-function heightlight(searchWord, index) {
-    // console.log(`fullWord = ${productList[index].pName}`);
-    // console.log(`searchWord = ${searchWord}`);
-    // console.log(`searchWord.length = ${searchWord.length}`);
-    let helightedChars = productList[index].pName.slice(index, searchWord.length);
-    let restOfWord = productList[index].pName.slice(index + searchWord.length);
-    // console.log(`helightedChars = ${helightedChars}`);
-    // console.log(`restOfWord = ${restOfWord}`);
-
-    if (searchWord.length !== 0) {
-        return `
-        <mark>${helightedChars}</mark>${restOfWord}
-    `;
+        bookmarks.push(bookmark);
+        localStorage.setItem('Bookmarks', JSON.stringify(bookmarks));
+        displayUrl();
+        restUrl();
+        console.log(bookmarks);
     } else {
-        return productList[index].pName
+        swal({
+            title: "Warning",
+            text: "Site Name or Url is not valid, Please click on 'check rules' button to know them",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "check rules",
+            closeOnConfirm: false
+        },
+            function () {
+                swal("Rules", `1- Site URL must be a valid one
+                (ex https://www.google.com)
+                2- Site name must contain at least 3 characters`, "success");
+            });
     }
 
+}
+
+function displayUrl() {
+    let tableContent = document.getElementById("tableContent");
+
+    let trs = '';
+
+    for (let i = 0; i < bookmarks.length; i++) {
+        trs += `
+        <tr>
+            <td>${i + 1}</td>
+            <td class="text-capitalize">${bookmarks[i].name}</td>
+            <td>
+                <button class="btn btn-visit" data-index="0" >
+                    <i class="fa-solid fa-eye pe-2"></i><a href="${bookmarks[i].url}" target="_blank">Visit</a>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-delete pe-2" onClick="removeUrl(${i})" data-index="0">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Delete
+                </button>
+            </td>
+        </tr>
+    `;
+    }
+
+
+    tableContent.innerHTML = trs;
+}
+
+function restUrl() {
+    bookmarkName.value = "";
+    bookmarkURL.value = "";
+    bookmarkURL.classList.remove('is-valid');
+    bookmarkName.classList.remove('is-valid');
+    bookmarkName.classList.remove('is-invalid');
+    bookmarkURL.classList.remove('is-invalid');
+}
+
+function removeUrl(index) {
+    bookmarks.splice(index, 1);
+    localStorage.setItem('Bookmarks', JSON.stringify(bookmarks));
+    displayUrl(bookmarks);
+    restUrl();
+}
+
+function checkNameInput() {
+    if (bookmarkName.value === "") {
+        bookmarkName.classList.remove('is-invalid');
+        bookmarkName.classList.remove('is-valid');
+    }
+    else if (bookmarkName.value.length < 4) {
+        bookmarkName.classList.add('is-invalid');
+    } else {
+        bookmarkName.classList.remove('is-invalid');
+        bookmarkName.classList.add('is-valid');
+    }
+}
+
+function checkUrlInput() {
+    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+    const url = bookmarkURL.value.trim();
+    if (url === "") {
+        bookmarkURL.classList.remove('is-invalid');
+        bookmarkURL.classList.remove('is-valid');
+    } else if (!urlPattern.test(url)) {
+        bookmarkURL.classList.add('is-invalid');
+        return false;
+    } else {
+        bookmarkURL.classList.remove('is-invalid');
+        bookmarkURL.classList.add('is-valid');
+        return true;
+    }
 }
