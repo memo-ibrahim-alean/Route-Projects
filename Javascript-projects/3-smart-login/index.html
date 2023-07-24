@@ -2,23 +2,42 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./css/all.min.css" />
-    <link rel="stylesheet" href="./css/sweetalert.css">
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>Smart Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/all.min.css" />
+  <link rel="stylesheet" href="./css/sweetalert.css">
+  <!-- Titillium Web font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css" />
 
-
+  <title>Smart Login</title>
 </head>
 
 <body>
-    
 
-    <!-- SWEET ALRET -->
-    <script src="./js/sweetalert.min.js"></script>
-    <script src="./js/script.js"></script>
+  <div class="container my-5 text-center">
+    <div class="group w-75 m-auto  p-5 bg-body rounded">
+      <h1>Smart Login System</h1>
+      <input type="email" id="signInEmailInput" class="form-control my-3 py-2" placeholder="Enter your email" required>
+      <input type="password" id="signInPasswordInput" class="form-control my-3 py-2" placeholder="Enter password"
+        required>
+      <p id="incorrect">
+        <!-- <span class="text-danger m-3">All inputs is required</span> -->
+        <!-- <span class="p-2 text-danger">incorrect email or password</span> -->
+      </p>
+
+      <button class="btn btn-outline-info w-100 my-3" id="signInButton">Login</button>
+      <p class="text-white">You have an account? <a class="text-white" href="signup.html">Sign Up</a></p>
+    </div>
+  </div>
+
+  <!-- SWEET ALRET -->
+  <script src="./js/sweetalert.min.js"></script>
+  <script src="./js/signin.js"></script>
+  
 </body>
 
 </html>
