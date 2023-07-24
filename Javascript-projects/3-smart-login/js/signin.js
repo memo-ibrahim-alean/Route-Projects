@@ -54,6 +54,8 @@ function isEmpty() {
   }
 }
 
-if ((location.pathname === "/home.html") && localStorage.getItem('SessionUser') === null) {
-  window.location.href = "index.html";
-}
+// if ((location.pathname === "/home.html") && localStorage.getItem('SessionUser') === null) {
+//   window.location.href = "index.html";
+// }
+
+// console.log(location.pathname.split('/'));

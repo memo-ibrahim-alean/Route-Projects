@@ -87,7 +87,9 @@ function validateEmail(email) {
 
 }
 
-if ((location.pathname === "/home.html") && localStorage.getItem('SessionUser') === null) {
-  alert("please signup as user first then try to login");
-  window.location.href = "index.html";
-}
+// if (location.pathname.split('/')[1] === "signup.html" && location.pathname === "/index.html" && localStorage.getItem('SessionUser') === null) {
+//   alert("please signup as user first then try to login");
+//   window.location.href = "index.html";
+// }
+
+

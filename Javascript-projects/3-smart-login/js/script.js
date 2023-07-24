@@ -10,7 +10,10 @@ logoutBtn.addEventListener('click', function () {
   logout();
 });
 
-
+// redirect the user to the index page if they are not logged in
+if (!localStorage.getItem('SessionUser')) {
+  window.location.href = "index.html";
+}
 
 // check if the loggedOut item exists in sessionStorage
 if (sessionStorage.getItem('loggedOut')) {
@@ -19,12 +22,11 @@ if (sessionStorage.getItem('loggedOut')) {
   window.location.href = "index.html";
 }
 
-
 // define the logout function
 function logout() {
   // clear the SessionUser item from localStorage
   localStorage.removeItem('SessionUser');
-  // set the loggedOut item in sessionStorage to prevent back button from returning to index.html
+  // set the loggedOut item in sessionStorage to prevent back button from returning to home.html
   sessionStorage.setItem('loggedOut', 'true');
   // redirect the user to the login page
   window.location.href = "index.html";
