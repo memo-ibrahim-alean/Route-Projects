@@ -5,3 +5,5 @@
 2. [bookmarker](https://route-bookmarker.vercel.app/)
 
 3. [smart-login](https://route-smart-login.netlify.app/)
+
+4. [weather](https://route-weather.netlify.app/)
