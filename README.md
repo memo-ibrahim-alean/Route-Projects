@@ -7,3 +7,5 @@
 3. [smart-login](https://route-smart-login.netlify.app/)
 
 4. [weather](https://route-weather.netlify.app/)
+
+5. [egyption-party](https://route-egyption-party.netlify.app/)
