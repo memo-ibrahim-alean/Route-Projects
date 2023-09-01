@@ -1,0 +1,128 @@
+/* Reset default margin and padding */
+* {
+  box-sizing: border-box;
+}
+
+.form-control::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #888787 !important;
+  opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #888787 !important;
+}
+
+.form-control::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #888787 !important;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #888787 !important;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set full-height on HTML and body */
+html,
+body {
+  height: 100%;
+}
+
+/* Set full width and height on .container-fluid */
+.container-fluid {
+  height: 100%;
+}
+
+/* Sidebar base styles */
+.small-sidebar,
+.main-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  overflow-x: hidden;
+  transition: transform 0.3s, left 0.3s; /* Add left property transition */
+}
+
+.small-sidebar {
+  left: 0;
+  width: 80px; /* Adjust the width as needed */
+  transform: translateX(0);
+}
+
+.small-sidebar.active {
+  left: 18.5% !important;
+}
+
+.main-sidebar {
+  background-color: #0d0d0d;
+  color: #fff;
+  left: -289px; /* Hide the main sidebar by default */
+  width: 285px; /* Adjust the width as needed */
+  transition: left 0.3s; /* Add left property transition */
+}
+
+.main-sidebar.active {
+  left: 0; /* Show the main sidebar when active */
+}
+
+/* Sidebar toggle button styles */
+.sidebar-toggle {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Logo styling */
+.logo img {
+  width: 100%;
+  max-width: 50px; /* Adjust the size as needed */
+}
+
+/* Bottom icons styling */
+.bottom-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#sidebarToggle {
+  border: none;
+  background-color: transparent;
+}
+
+.card {
+  overflow: hidden;
+}
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  transform: translateY(100%);
+  transition: all 0.5s;
+}
+
+.card:hover .card-overlay {
+  display: block;
+  height: 100%;
+  transform: translateY(0);
+}
+
+/* ... Your existing CSS ... */
